@@ -45,7 +45,7 @@ echo "export PATH=~/.config/composer/vendor/bin:~/.composer/vendor/bin:\$PATH" >
 # Show message after successfully installing
 setsailNoColor
 barNoColor
-echo "| Prepare the Sails, we're ready for the Open Sea!";
+echo "| Installation done! Please, run vstack setup to continue.";
 barNoColor
 
 # Remove vstack folder pulled from git repo and switch user to vstack
