@@ -39,7 +39,7 @@ sudo chown -R vstack:vstack /etc/.vstack/tmp
 . /etc/.vstack/includes/format
 
 # Add vstack alias to vstack bashrc and the bin path dir for composer
-echo "alias vstack='sh /etc/.vstack/vstack'" >> /home/vstack/.bashrc
+echo "alias vstack='sh /etc/.vstack'" >> /home/vstack/.bashrc
 echo "export PATH=~/.config/composer/vendor/bin:~/.composer/vendor/bin:\$PATH" >> /home/vstack/.bashrc
 
 # Show message after successfully installing
