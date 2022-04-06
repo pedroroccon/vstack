@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#/
-#--------------------------------------------------------------------------
-# Vstack Initial Setup
-#--------------------------------------------------------------------------
-#
-# This file will setup the server with Nginx, PHP, and Mysql.
-#
-#/
-
 . /etc/.vstack/includes/colors
 . /etc/.vstack/includes/format
 
@@ -38,14 +29,14 @@ if [ "$2" = "redis" ] || [ "$3" = "redis" ]; then
    INSTALL_REDIS=1
 fi
 
-setsail
+setvstack
 
 bar
-cyan "| Removing Apache ";
+cyan "| Removing Apache from server";
 bar
 sudo service apache2 stop
-sudo apt-get purge apache2 apache2-utils apache2.2-bin apache2-common
-sudo apt-get purge apache2 apache2-utils apache2-bin apache2.2-common
+sudo apt-get purge -y apache2 apache2-utils apache2.2-bin apache2-common
+sudo apt-get purge -y apache2 apache2-utils apache2-bin apache2.2-common
 
 bar
 cyan "| Installing Nginx ";
@@ -138,7 +129,7 @@ bar
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 bar
-cyan "| Installing npm"
+cyan "| Installing NPM"
 bar
 
 curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
@@ -177,16 +168,20 @@ if [ $INSTALL_REDIS -eq 1 ] ; then
 	sudo apt -y install redis-server
 fi
 
-setsail
+setvstack
 
 bar
-cyan "| Happy Sailing! "
-bar
-
-bar
-cyan "| Here is your credentials, do not forget it! "
+cyan "| Finished! "
 bar
 
 bar
-cyan "| ! "
+cyan "| Here is your server informations, do not forget it! "
+bar
+
+bar
+cyan "| User $USER "
+cyan "| PHP Version $PHP "
+cyan "| Datbase service $MYSQL_SERVICE "
+cyan "| Datbase user $MYSQLUSER "
+cyan "| Datbase password $MYSQLPASS "
 bar

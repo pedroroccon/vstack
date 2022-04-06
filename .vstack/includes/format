@@ -8,24 +8,18 @@ barNoColor(){
     echo "--------------------------------------------------"
 }
 
-setsail(){
+setvstack(){
 	cyan   "                                                  "
-	cyan   "                     LaraSail                     "
-	purple "                         _                        "
-	purple "                     __ )_)__                     "
-	purple "                     )_))_))_)                    "
-	purple "                     _!__!__!_                    "
-	purple "                     \_______/                    "
+	cyan   "                       BYUS                       "
+	purple "                    Technology                    "
+	purple "        VStack (Automated server build up)        "
 	blue   "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 }
 
-setsailNoColor(){
+setvstackNoColor(){
 	echo   "                                                  "
-	echo   "                     LaraSail                     "
-	echo   "                         _                        "
-	echo   "                     __ )_)__                     "
-	echo   "                     )_))_))_)                    "
-	echo   "                     _!__!__!_                    "
-	echo   "                     \_______/                    "
+	echo   "                       BYUS                       "
+	echo   "                    Technology                    "
+	echo   "        VStack (Automated server build up)        "
 	echo   "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 }
