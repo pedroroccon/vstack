@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#/
+#--------------------------------------------------------------------------
+# Install VStack
+#--------------------------------------------------------------------------
+#
+# Moving the necessary files to the correct locations, and
+# adding the vstack user.
+#
+#/
+
+# Move the files to /etc/.vstack and create a root vstack alias
+mv vstack-master/.vstack /etc/.vstack
+echo "alias vstack='sh /etc/.vstack/vstack'" >> /etc/bash.bashrc
+
+# Create a new password and create our new vstack user
+PASS=$(openssl rand -base64 32)
+useradd -G sudo -d /home/vstack -p $PASS -m vstack -s /bin/bash
+
+# Give the vstack user ability to not always require password
+echo 'vstack ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+# Turn on SSH Passwords
+# sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+# echo -n 'AllowUsers vstack' >> /etc/ssh/sshd_config
+# service ssh reload
+
+# Store the vstack user password
+if [ ! -d /etc/.vstack/tmp ]; then
+  sudo mkdir /etc/.vstack/tmp
+fi
+sudo echo $PASS > /etc/.vstack/tmp/pass
+
+sudo chown -R vstack:vstack /etc/.vstack/tmp
+
+
+# Include our colors and format scripts
+. /etc/.vstack/includes/colors
+. /etc/.vstack/includes/format
+
+
+# Add vstack alias to vstack bashrc and the bin path dir for composer
+echo "alias vstack='sh /etc/.vstack/vstack'" >> /home/vstack/.bashrc
+echo "export PATH=~/.config/composer/vendor/bin:~/.composer/vendor/bin:\$PATH" >> /home/vstack/.bashrc
+
+
+# Show message after successfully installing
+setsailNoColor
+barNoColor
+echo "| Prepare the Sails, we're ready for the Open Sea!";
+barNoColor
+
+
+# Remove vstack folder pulled from git repo and switch user to vstack
+rm -rf vstack-master
+su - vstack
